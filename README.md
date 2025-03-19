@@ -22,30 +22,39 @@ Here is the model, the heart of the program:
 
 The model is successfully trained with an accuracy of 98.75%. Here are some predictions on 10 random numbers made by the trained Neural Network:
 
-![image](https://github.com/user-attachments/assets/e03972d5-36c7-42ea-a40e-bef118f21de3)
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/e03972d5-36c7-42ea-a40e-bef118f21de3" style=width:75%>
+</p>
 
 The is an interesting example becuase it actually shows a number that was incorrectly classified. The 6 does look vaguely similar to an 8. 
 However, with further training and tweaking, it should be able to get a number like this correct. 
 
 I wanted to see how the model did with different types of numbers, so I tallied up the predictions vs the actual images. While the examples are randomly chosen without replacement, 
 I wanted to make sure to have 800 examples of each actual number. Seaborn has a great plot for this type of comparison called a confusion matrix (aptly named).
-
-![image](https://github.com/user-attachments/assets/3b64d0d2-cc62-4eeb-9a39-5605d91fb09a)
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/3b64d0d2-cc62-4eeb-9a39-5605d91fb09a" style=width:75%>
+</p>
 
 The problem here is that the correct results dominate the plot. So here is another plot with the correct results removed:
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/0213ac37-9710-4847-998d-2df22b0d839d" style=width:75%>
+</p>
 
-![image](https://github.com/user-attachments/assets/0213ac37-9710-4847-998d-2df22b0d839d)
-
-The number 10 stands out on this plot, where 2 was incorrectly identified as a 7 in 10 cases (out of the 800 previously explored). I wanted to look into this further
-and to be honest, I can't really blame the model for many of these cases. Here are those 10 cases:
-
-![image](https://github.com/user-attachments/assets/bde05155-11b4-4dd0-83e4-7cc99a747851)
+The largest value in this plot is the number 10: 2 was incorrectly identified as a 7 in 10 cases. Since there are 800 images of the number 2, this means that the model misclassifies a number 2 as a 7 in 10/800 cases, or 1.25% of the time. I thought it would be interesting to look at the cases where the model failed. Funnily enough, many of these images do look somewhat like the number 7.   
+Here are those 10 cases:
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/bde05155-11b4-4dd0-83e4-7cc99a747851" style=width:75%>
+</p>
 
 All in all, the model's accuracy is fairly good. I've summarized the accuracy at detecting each number in the below table. 
-
-![image](https://github.com/user-attachments/assets/b37e1f47-8920-4d4a-9bca-0889835b4874)
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/b37e1f47-8920-4d4a-9bca-0889835b4874" style=width:40%>
+</p>
 
 Even the worst numbers, 2 and 9, can still be correctly identified by the model over 97% of the time. 
-Since 99% is an industry benchmark accuracy for the MNIST dataset, I'd say this model is successful, especially since this model can be trained in only a minute or so on a Google Colab T4 GPU. 
-For better results, I may try spending a longer time training the model locally. 
-With more compute time and power, it wouldn't be necessary to simplify the model so much, so I could add a lot more to the model than the 10 neurons that this one uses. 
+Since 99% is an industry benchmark accuracy for the MNIST dataset, I'd say this model is successful, especially since this model can be trained in only a minute or so on Google Colab. The convolution layers definitely help this accuracy. They enhance the pattern recognition 
+of the model and aren't computationally expensive. This allows the "model" to only be 10 neurons, which is the key for it being able to be trained so quickly. After training, the lightweight model also has benefits in the use-phase since it uses minimal computation when actually identifying these digits as well. 
+
+For better accuracy, I may try spending a longer time training the model locally. 
+With more compute time and power, a more complex model can be used, which could improve these results even more. A lot more than 10 neurons 
+can be used in order to enhance accuracy. 
